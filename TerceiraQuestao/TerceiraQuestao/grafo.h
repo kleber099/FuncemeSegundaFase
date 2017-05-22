@@ -5,29 +5,31 @@
 
 #include <iostream>
 #include <vector>
-#include <algorithm> // função find
+#include <algorithm>
 
 using namespace std;
 
+/**
+* Classe que representa o grafo, implementação baseada na lista de adjacência
+*/
 class Grafo
 {
-	private:
-		string strSaida;
+private:
+	string strSaida;
 
-		vector<Vertice>vertices; // ponteiro para um array contendo as listas de adjacências
-		ValorVertice getFornecedor();
-		void Grafo::percorrerGrafo(ValorVertice &fornecedor);
-		double valorMenorCliente();
-		ValorVertice Grafo::primeiroCliente();
-		void formatarTexto(ValorVertice cliente, ValorVertice fornecedor);
-		int validarGrafo();
+	vector<Vertice>vertices;
+	ValorVertice getFornecedor();
+	void Grafo::percorrerGrafo(ValorVertice &fornecedor);
+	double valorMenorCliente();
+	ValorVertice Grafo::primeiroCliente();
+	void formatarTexto(ValorVertice cliente, ValorVertice fornecedor);
 
-	public:
-		Grafo(); // construtor
-		void adicionarVertice(Vertice vertice);
-		int adicionarAresta(Vertice v1, Vertice v2);
-		void entregarProdutos();
-	
+public:
+	Grafo();
+	void adicionarVertice(Vertice vertice);
+	int adicionarAresta(Vertice v1, Vertice v2);
+	void entregarProdutos();
+
 };
 
 #endif

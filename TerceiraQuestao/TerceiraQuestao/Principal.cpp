@@ -13,15 +13,14 @@ int main() {
 	g.adicionarVertice(fornecedor);
 	g.adicionarAresta(fornecedor, cliente1);
 	g.adicionarAresta(fornecedor, juncao);
-	
+
 	g.adicionarVertice(juncao);
 	g.adicionarAresta(juncao, cliente2);
 	g.adicionarAresta(juncao, cliente3);
 
-
 	g.entregarProdutos();
 
 	getchar();
-    return 0;
+	return 0;
 }
 

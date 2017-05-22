@@ -1,38 +1,70 @@
 #include "valor_vertice.h"
 
-int ValorVertice::getId() {
+/**
+* Retorna o id do ValorVertice
+*/
+int ValorVertice::getId()
+{
 	return this->id;
 }
 
-double ValorVertice::getValor() {
+/**
+* Retorna o id do ValorVertice
+*/
+double ValorVertice::getValor()
+{
 	return this->valor;
 }
 
-V_TIPO ValorVertice::getTipo() {
+/**
+* Retorna o tipo do ValorVertice
+*/
+V_TIPO ValorVertice::getTipo()
+{
 	return this->tipo;
 }
 
-void ValorVertice::subtrair(double valor) {
+/**
+* Subrair o valor do VerticeValor, usado quando o tipo é Fornecedor
+*/
+void ValorVertice::subtrair(double valor)
+{
 
-	if (valor <= this->valor) {
+	if (valor <= this->valor)
+	{
 		this->valor -= valor;
-
 		this->passeio++;
 	}
 }
 
-void ValorVertice::incrementarPasseio() {
+/**
+* Incrementa o passeio, usado quando o tipo é Cliente
+*/
+void ValorVertice::incrementarPasseio()
+{
 	this->passeio++;
 }
 
-int ValorVertice::getPasseio() {
+/**
+* Retorna o passeio do cliente, usando quando o tipo é Cliente
+*/
+int ValorVertice::getPasseio()
+{
 	return this->passeio;
 }
 
-bool ValorVertice::isFornecer() {
+/**
+* Retorna se o fornecedor pode ainda fornecer produtos para o Cliente
+*/
+bool ValorVertice::isFornecer()
+{
 	return this->fornecer;
 }
 
-void ValorVertice::fimFornecer() {
+/**
+* Marcar para o fornecedor não mais forncer produtos ao Cliente
+*/
+void ValorVertice::fimFornecer()
+{
 	this->fornecer = false;
 }

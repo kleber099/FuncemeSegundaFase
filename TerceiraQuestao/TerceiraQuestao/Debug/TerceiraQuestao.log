@@ -1,3 +1,8 @@
-﻿  Principal.cpp
-  TerceiraQuestao.vcxproj -> C:\Users\klebe\Documents\Visual Studio 2015\Projects\FuncemeSegundaFase_\TerceiraQuestao\Debug\TerceiraQuestao.exe
-  TerceiraQuestao.vcxproj -> C:\Users\klebe\Documents\Visual Studio 2015\Projects\FuncemeSegundaFase_\TerceiraQuestao\Debug\TerceiraQuestao.pdb (Full PDB)
+﻿  vertice.cpp
+  valor_vertice.cpp
+  grafo.cpp
+  Principal.cpp
+  Generating Code...
+c:\users\klebe\documents\github\funcemesegundafase\terceiraquestao\terceiraquestao\grafo.cpp(157): warning C4715: 'Grafo::primeiroCliente': not all control paths return a value
+  TerceiraQuestao.vcxproj -> C:\Users\klebe\Documents\GitHub\FuncemeSegundaFase\TerceiraQuestao\Debug\TerceiraQuestao.exe
+  TerceiraQuestao.vcxproj -> C:\Users\klebe\Documents\GitHub\FuncemeSegundaFase\TerceiraQuestao\Debug\TerceiraQuestao.pdb (Full PDB)
