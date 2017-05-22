@@ -11,7 +11,6 @@ Grafo::Grafo()
 */
 void Grafo::adicionarVertice(Vertice vertice)
 {
-
 	vertices.push_back(vertice);
 }
 
@@ -20,8 +19,9 @@ void Grafo::adicionarVertice(Vertice vertice)
 */
 int Grafo::adicionarAresta(Vertice v1, Vertice v2)
 {
-
 	int indice = 0;
+
+	//encontrado o vertice que se deseja adicionar uma aresta
 	for (size_t i = 0; i < vertices.size(); i++)
 	{
 		ValorVertice valorVertice = vertices[i].getValor();
@@ -35,6 +35,7 @@ int Grafo::adicionarAresta(Vertice v1, Vertice v2)
 		indice++;
 	}
 
+	//adicionando a aresta no vertice encontrado
 	ValorVertice valorVertice2 = v2.getValor();
 	vertices[indice].adicionarAresta(valorVertice2);
 
@@ -46,7 +47,6 @@ int Grafo::adicionarAresta(Vertice v1, Vertice v2)
 */
 void Grafo::entregarProdutos()
 {
-
 	//recupera o fornecedor no grafo
 	ValorVertice fornecedor = getFornecedor();
 
@@ -60,7 +60,6 @@ void Grafo::entregarProdutos()
 	}
 
 	cout << strSaida;
-
 }
 
 /**
@@ -68,24 +67,26 @@ void Grafo::entregarProdutos()
 */
 ValorVertice Grafo::getFornecedor()
 {
-
 	ValorVertice valorVertice;
 
+	//percorrendo todos os vertices do grafo
 	for (size_t i = 0; i < vertices.size(); i++)
 	{
-
 		ValorVertice valorVertice = vertices[i].getValor();
 
+		//Fornecedor encontrado
 		if (valorVertice.getTipo() == Fornecedor) {
 			return valorVertice;
 		}
 
 		vector<ValorVertice> arestas = vertices[i].getArestas();
 
+		//percorrer todas as arestas do vertice
 		for (size_t j = 0; j < arestas.size(); j++)
 		{
 			ValorVertice valorVertice = arestas[j];
 
+			//fornecedor encontrado
 			if (valorVertice.getTipo() == Fornecedor) {
 				return valorVertice;
 			}
@@ -100,12 +101,15 @@ ValorVertice Grafo::getFornecedor()
 */
 double Grafo::valorMenorCliente()
 {
+	//recuperando o primeiro cliente no grafo
 	ValorVertice clienteAtual = primeiroCliente();
 
+	//percorrendo todos os vertices do grafo
 	for (size_t i = 0; i < vertices.size(); i++)
 	{
 		ValorVertice valorVertice = vertices[i].getValor();
 
+		//selecionar se o vertice for Cliente e se o valor do vertice for menor que o cliente atual
 		if (valorVertice.getTipo() == Cliente && valorVertice.getValor() < clienteAtual.getValor())
 		{
 			clienteAtual = valorVertice;
@@ -113,10 +117,12 @@ double Grafo::valorMenorCliente()
 
 		vector<ValorVertice> arestas = vertices[i].getArestas();
 
+		//percorrendo todas as arestas do vertice
 		for (size_t j = 0; j < arestas.size(); j++)
 		{
 			ValorVertice valorVertice = arestas[j];
 
+			//selecionar a resta se for Cliente e se o valor da aresta for menor que o cliente atual
 			if (valorVertice.getTipo() == Cliente && valorVertice.getValor() < clienteAtual.getValor())
 			{
 				clienteAtual = valorVertice;
@@ -132,11 +138,12 @@ double Grafo::valorMenorCliente()
 */
 ValorVertice Grafo::primeiroCliente()
 {
-
+	//percorrendo todos os vertices do grafo
 	for (size_t i = 0; i < vertices.size(); i++) 
 	{
 		ValorVertice valorVertice = vertices[i].getValor();
 
+		//se o vertice atual for cliente retorna o valor do vertice
 		if (valorVertice.getTipo() == Cliente)
 		{
 			return valorVertice;
@@ -144,10 +151,12 @@ ValorVertice Grafo::primeiroCliente()
 
 		vector<ValorVertice> arestas = vertices[i].getArestas();
 
+		//percorrendo todas as restas do vertice atual
 		for (size_t j = 0; j < arestas.size(); j++)
 		{
 			ValorVertice valorVertice = arestas[j];
 
+			//se a aresta atual for cliente retorna o valor do vertice
 			if (valorVertice.getTipo() == Cliente)
 			{
 				return valorVertice;
@@ -162,17 +171,17 @@ ValorVertice Grafo::primeiroCliente()
 */
 void Grafo::percorrerGrafo(ValorVertice &fornecedor)
 {
-
+	//percorrendo todos os vertices do grafo
 	for (size_t i = 0; i < vertices.size(); i++)
 	{
-
 		ValorVertice valorVertice = vertices[i].getValor();
 
+		//caso for cliente
 		if (valorVertice.getTipo() == Cliente)
 		{
-
 			ValorVertice cliente = valorVertice;
 
+			//caso o valor do fornecedor for maior que o cliente quer atualizar o valor do fornecedor
 			if (fornecedor.getValor() >= cliente.getValor())
 			{
 				double sub = cliente.getValor();
@@ -181,7 +190,6 @@ void Grafo::percorrerGrafo(ValorVertice &fornecedor)
 				vertices[i].incrementar();
 				fornecedor.subtrair(sub);
 			}
-
 
 			if (fornecedor.getValor() < cliente.getValor() && cliente.isFornecer())
 			{
@@ -192,15 +200,17 @@ void Grafo::percorrerGrafo(ValorVertice &fornecedor)
 
 		vector<ValorVertice> arestas = vertices[i].getArestas();
 
+		//percorrendo tdos as arestas do vertices
 		for (size_t j = 0; j < arestas.size(); j++)
 		{
 			ValorVertice valorVertice = arestas[j];
 
+			//se for cliente
 			if (valorVertice.getTipo() == Cliente)
 			{
-
 				ValorVertice cliente = valorVertice;
 
+				//caso o valor do fornecedor for maior que o cliente quer atualizar o valor do fornecedor
 				if (fornecedor.getValor() >= valorVertice.getValor())
 				{
 					double sub = cliente.getValor();
@@ -227,7 +237,6 @@ void Grafo::percorrerGrafo(ValorVertice &fornecedor)
 */
 void Grafo::formatarTexto(ValorVertice cliente, ValorVertice fornecedor)
 {
-
 	static int passo = 1;
 	double sub = cliente.getValor();
 
@@ -241,7 +250,6 @@ void Grafo::formatarTexto(ValorVertice cliente, ValorVertice fornecedor)
 		this->strSaida.append("Passo ").append(strPasso).append("\n================\n")
 			.append("F(").append(strPasso).append(")").append(" = ").append(strValor).append("\n")
 			.append("F libera ").append(strSub).append(" para ").append("C").append(strId).append("\n");
-
 	}
 	else
 	{
