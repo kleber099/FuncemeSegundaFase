@@ -1,6 +1,8 @@
 #ifndef __FAIXA__
 #define __FAIXA__
 
+#include "retorno.h"
+
 /**
 * Classe que armazena uma Faixa, que contém uma prioridade e volume, essa classe armazena a prioridade
 * e Volume de uma grid na interface gráfica
@@ -16,7 +18,7 @@ public:
 	Faixa(int prioridade, double faixaSuperior);
 	int getPrioridade();
 	double getFaixaSuperior();
-	int validar();
+	RET validar();
 };
 
 #endif

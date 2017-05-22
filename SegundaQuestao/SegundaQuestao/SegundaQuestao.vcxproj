@@ -150,6 +150,7 @@
     <ClCompile Include="priorityUtils.cpp" />
     <ClCompile Include="priorityZone.cpp" />
     <ClCompile Include="reservatorio.cpp" />
+    <ClCompile Include="retorno.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="controleReservatorio.h" />
@@ -157,6 +158,7 @@
     <ClInclude Include="priorityUtils.h" />
     <ClInclude Include="priorityZone.h" />
     <ClInclude Include="reservatorio.h" />
+    <ClInclude Include="retorno.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

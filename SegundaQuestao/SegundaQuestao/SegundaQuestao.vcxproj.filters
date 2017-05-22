@@ -33,6 +33,9 @@
     <ClCompile Include="Faixa.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="retorno.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="priorityUtils.h">
@@ -48,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="controleReservatorio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="retorno.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

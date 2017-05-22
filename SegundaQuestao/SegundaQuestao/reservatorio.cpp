@@ -1,4 +1,5 @@
 #include "reservatorio.h"
+#include "retorno.h"
 
 /**
 * Construtor de um Reservatorio
@@ -42,22 +43,22 @@ double Reservatorio::getMaximo()
 * Realiza a validação dos dados do reservatório
 * @return 0 - OK
 */
-int Reservatorio::validar()
+RET Reservatorio::validar()
 {
 	//Caso o volume correte, minimo ou máximo forem 0 retorna erro
 	if (this->minimo == 0.0 || this->inicial == 0.0 || this->maximo == 0.0)
 	{
-		return -1;
+		return RET_ERRO_RESER_INPUT;
 
 	}
 	else if (this->inicial <= this->minimo) //Volume corrente tem que ser maior que o minimo
 	{
-		return -2;
+		return RET_ERRO_VOl_MIN;
 	}
 	else if (this->inicial >= this->maximo) //Volume corrente tem que ser menir que o máximo
 	{
-		return -3;
+		return RET_ERRO_VOl_MAX;
 	}
 
-	return 0;
+	return RET_OK;
 }

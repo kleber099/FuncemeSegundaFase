@@ -1,6 +1,8 @@
 #ifndef __RESERVATORIO__
 #define __RESERVATORIO__
 
+#include "retorno.h"
+
 /**
 * Classe que armazena os dados do Reservatório, contém volume corrente, minimo e máximo, essa classe armazena os dados
 * da interface
@@ -17,7 +19,7 @@ public:
 	double getInicial();
 	double getMinimo();
 	double getMaximo();
-	int validar();
+	RET validar();
 
 };
 

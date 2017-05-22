@@ -1,6 +1,7 @@
 #include "controleReservatorio.h"
 #include "reservatorio.h"
 #include "Faixa.h"
+#include "retorno.h"
 
 #include <array>
 
@@ -34,9 +35,10 @@ private:
 	void AddLinha(wxCommandEvent& event);
 	void RemoveLinha(wxCommandEvent& event);
 	void AlterarGrid(wxGridEvent& event);
-	Reservatorio criarReservatorio(int* retorno);
-	Faixa criarFaixa(wxGridEvent& event, int* retorno);
-	int atualizarFaixas(wxGridEvent& event, Faixa faixa);
+
+	Reservatorio criarReservatorio(RET* retorno);
+	Faixa criarFaixa(wxGridEvent& event, RET* retorno);
+	RET atualizarFaixas(wxGridEvent& event, Faixa faixa);
 	void atualizaGrid(vector<Tupla>& tuplas);
 
 	wxDECLARE_EVENT_TABLE();
@@ -136,13 +138,14 @@ void FrameInterface::RemoveLinha(wxCommandEvent& event)
 void FrameInterface::AlterarGrid(wxGridEvent& event)
 {
 	//ciando um reservatório
-	int retorno = 0;
+	RET retorno = RET_OK;
 	Reservatorio reservatorio = criarReservatorio(&retorno);
 
 	//Mostrar erro causa tenha algum dado invalido no reservatorio
-	if (retorno != 0)
+	if (retorno != RET_OK)
 	{
-		wxLogMessage("Erro!!!");
+		Messagem messagem;
+		wxLogMessage(wxString(messagem.traducaoMessagem(retorno)));
 	}
 	else
 	{
@@ -150,9 +153,10 @@ void FrameInterface::AlterarGrid(wxGridEvent& event)
 		Faixa faixa = criarFaixa(event, &retorno);
 
 		//Mostrar erro causa tenha algum dado invalido na faixa
-		if (retorno != 0)
+		if (retorno != RET_OK)
 		{
-			wxLogMessage("Erro!!!");
+			Messagem messagem;
+			wxLogMessage(wxString(messagem.traducaoMessagem(retorno)));
 		}
 		else
 		{
@@ -160,9 +164,10 @@ void FrameInterface::AlterarGrid(wxGridEvent& event)
 			retorno = atualizarFaixas(event, faixa);
 
 			//retorna erro caso a faixa mais acima tenha um valor maior ou igual a faixa mais abaixo
-			if (retorno != 0)
+			if (retorno != RET_OK)
 			{
-				wxLogMessage("Erro!!!");
+				Messagem messagem;
+				wxLogMessage(wxString(messagem.traducaoMessagem(retorno)));
 			}
 			else
 			{
@@ -179,7 +184,7 @@ void FrameInterface::AlterarGrid(wxGridEvent& event)
 
 
 //Criação e validação do Reservatório
-Reservatorio FrameInterface::criarReservatorio(int* retorno)
+Reservatorio FrameInterface::criarReservatorio(RET* retorno)
 {
 	double inicial = 0;
 	double minimo = 0;
@@ -200,7 +205,7 @@ Reservatorio FrameInterface::criarReservatorio(int* retorno)
 }
 
 //Criação e validação da Faixa
-Faixa FrameInterface::criarFaixa(wxGridEvent& event, int* retorno)
+Faixa FrameInterface::criarFaixa(wxGridEvent& event, RET* retorno)
 {
 	int linha = event.GetRow();
 	int coluna = event.GetCol();
@@ -217,9 +222,9 @@ Faixa FrameInterface::criarFaixa(wxGridEvent& event, int* retorno)
 }
 
 //Atualização do vetor de faixas, caso não haja a faixa no vetor é adicionado uma nova faixa
-int FrameInterface::atualizarFaixas(wxGridEvent& event, Faixa faixa)
+RET FrameInterface::atualizarFaixas(wxGridEvent& event, Faixa faixa)
 {
-	int retorno = 0;
+	RET retorno = RET_OK;
 	int linha = event.GetRow();
 
 	//adicionandod uma nova faixa
@@ -237,7 +242,7 @@ int FrameInterface::atualizarFaixas(wxGridEvent& event, Faixa faixa)
 	//verificando se existe alguma faixa mais acima com o volume maior ou igual a uma faixa mais abaixo
 	for (int i = indice - 1; i >= 0; i--) {
 		if (faixas[i].getFaixaSuperior() >= validacaoFaixa) {
-			retorno = -5; //atualizando o erro
+			retorno = RET_ERRO_FAIXA_SUPER_INFER; //atualizando o erro
 			break;
 		}
 

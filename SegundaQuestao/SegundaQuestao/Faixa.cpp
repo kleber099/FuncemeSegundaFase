@@ -1,4 +1,5 @@
 #include "Faixa.h"
+#include "retorno.h"
 
 /**
 * Construtor de uma Faixa
@@ -34,13 +35,13 @@ double Faixa::getFaixaSuperior()
 * Realiza a validação dos dados da Faixa
 * @return 0 - OK
 */
-int Faixa::validar()
+RET Faixa::validar()
 {
 	//volume da faixa não pode ser menor que 0
 	if (this->faixaSuperior <= 0.0) {
-		return -4;
+		return RET_ERRO_FAIXA;
 	}
 
-	return 0;
+	return RET_OK;
 }
 
